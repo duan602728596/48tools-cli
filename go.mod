@@ -5,6 +5,7 @@ go 1.24.5
 require (
 	github.com/go-resty/resty/v2 v2.16.5
 	github.com/olekukonko/tablewriter v1.0.9
+	gopkg.in/yaml.v3 v3.0.1
 )
 
 require (
