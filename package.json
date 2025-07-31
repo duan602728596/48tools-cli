@@ -5,7 +5,12 @@
     "eslint": "cross-env COMMITLINT=1 eslint ./ --fix --cache --cache-location .eslintcache --no-warn-ignored",
     "eslint:no-fix": "cross-env COMMITLINT=1 eslint ./ --cache --cache-location .eslintcache --no-warn-ignored",
     "go:download": "GOPROXY=https://mirrors.aliyun.com/goproxy/ go mod download",
+    "build": "rimraf ./build && node scripts/build.mts",
     "prepare": "husky"
+  },
+  "dependencies": {
+    "execa": "^9.6.0",
+    "rimraf": "^6.0.1"
   },
   "devDependencies": {
     "@babel/core": "^7.28.0",
@@ -20,7 +25,6 @@
     "eslint-import-resolver-node": "^0.3.9",
     "eslint-import-resolver-typescript": "^3.10.1",
     "eslint-plugin-import": "^2.32.0",
-    "execa": "^9.6.0",
     "globals": "^16.3.0",
     "husky": "^9.1.7",
     "lint-staged": "^16.1.2",
