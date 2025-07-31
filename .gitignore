@@ -19,6 +19,9 @@ yarn-error.log
 # eslint
 .eslintcache
 
+# config
+config.yaml
+
 #build
 dist
 build
