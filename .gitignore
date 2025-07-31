@@ -1,0 +1,23 @@
+.idea
+.DS_Store
+
+# node
+node_modules
+npm-debug.log
+package-lock.json
+pnpm-lock.yaml
+
+# yarn
+yarn.lock
+yarn-error.log
+.yarnrc
+.yarn/*
+!.yarn/releases
+.pnp.js
+.pnp.cjs
+
+# eslint
+.eslintcache
+
+#build
+dist
