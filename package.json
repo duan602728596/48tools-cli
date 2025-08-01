@@ -5,7 +5,7 @@
     "eslint": "cross-env COMMITLINT=1 eslint ./ --fix --cache --cache-location .eslintcache --no-warn-ignored",
     "eslint:no-fix": "cross-env COMMITLINT=1 eslint ./ --cache --cache-location .eslintcache --no-warn-ignored",
     "go:download": "GOPROXY=https://mirrors.aliyun.com/goproxy/ go mod download",
-    "build": "rimraf ./build && node scripts/build.mts",
+    "build": "rimraf ./.build && node scripts/build.mts",
     "prepare": "husky"
   },
   "dependencies": {

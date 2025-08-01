@@ -7,7 +7,7 @@ import { execa } from 'execa';
 const softwareName: string = '48tools';
 const osList: Array<string> = ['windows', 'linux', 'darwin'];
 const archList: Array<string> = ['amd64', 'arm64'];
-const buildDir: string = join(cwd(), 'build');
+const buildDir: string = join(cwd(), '.build');
 
 /**
  * 编译文件
