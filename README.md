@@ -18,3 +18,9 @@ node --run go:download
 ```bash
 go test ./...
 ```
+
+## 编译
+在根目录运行如下命令，执行编译。
+```bash
+node --run build
+```
