@@ -1,10 +1,11 @@
 package api
 
 import (
-	"github.com/go-resty/resty/v2"
 	"net"
 	"net/http"
 	"time"
+
+	"github.com/go-resty/resty/v2"
 )
 
 // Request

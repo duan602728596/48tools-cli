@@ -2,9 +2,10 @@ package cmd
 
 import (
 	"fmt"
-	"gopkg.in/yaml.v3"
 	"os"
 	"path/filepath"
+
+	"gopkg.in/yaml.v3"
 )
 
 type Pocket48LiveConfig struct {
