@@ -5,7 +5,7 @@ import (
     "errors"
 )
 
-type UserInfo struct {
+type LiveListUserInfo struct {
     Avatar   string `json:"avatar"`
     Nickname string `json:"nickname"`
     TeamLogo string `json:"teamLogo"`
@@ -13,16 +13,16 @@ type UserInfo struct {
 }
 
 type LiveListContentInfo struct {
-    CoverPath              string   `json:"coverPath"`
-    Ctime                  string   `json:"ctime"`
-    LiveId                 string   `json:"liveId"`
-    RoomId                 string   `json:"roomId"`
-    LiveType               int      `json:"liveType"` // 1：直播，2：电台，5：游戏
-    LiveMode               int      `json:"liveMode"` // 0：正常，1：录屏
-    Title                  string   `json:"title"`
-    InMicrophoneConnection bool     `json:"inMicrophoneConnection"`
-    Status                 int      `json:"status"`
-    UserInfo               UserInfo `json:"userInfo"`
+    CoverPath              string           `json:"coverPath"`
+    Ctime                  string           `json:"ctime"`
+    LiveId                 string           `json:"liveId"`
+    RoomId                 string           `json:"roomId"`
+    LiveType               int              `json:"liveType"` // 1：直播，2：电台，5：游戏
+    LiveMode               int              `json:"liveMode"` // 0：正常，1：录屏
+    Title                  string           `json:"title"`
+    InMicrophoneConnection bool             `json:"inMicrophoneConnection"`
+    Status                 int              `json:"status"`
+    UserInfo               LiveListUserInfo `json:"userInfo"`
 }
 
 type LiveListContent struct {
