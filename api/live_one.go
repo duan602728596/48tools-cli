@@ -11,18 +11,19 @@ type LiveOneUser struct {
 }
 
 type LiveOneContent struct {
-	LiveId         string `json:"liveId"`
-	Title          string `json:"title"`
-	RoomId         string `json:"roomId"`
-	PlayStreamPath string `json:"playStreamPath"`
-	Ctime          string `json:"ctime"`
+	LiveId         string      `json:"liveId"`
+	Title          string      `json:"title"`
+	RoomId         string      `json:"roomId"`
+	PlayStreamPath string      `json:"playStreamPath"`
+	Ctime          string      `json:"ctime"`
+	User           LiveOneUser `json:"user"`
 }
 
 type LiveOneResponse struct {
-	Message string          `json:"message"`
-	Status  int             `json:"status"`
-	Success bool            `json:"success"`
-	Content LiveListContent `json:"content"`
+	Message string         `json:"message"`
+	Status  int            `json:"status"`
+	Success bool           `json:"success"`
+	Content LiveOneContent `json:"content"`
 }
 
 // RequestLiveOne 加载单个直播的信息
