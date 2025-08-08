@@ -7,8 +7,9 @@ package main
 import (
 	"flag"
 	"fmt"
-	"github.com/duan602728596/48tools-cli/v2/cmd"
 	"os"
+
+	"github.com/duan602728596/48tools-cli/v2/cmd"
 )
 
 // main 初始化调用命令行
@@ -45,7 +46,26 @@ func main() {
 			fmt.Println("命令解析错误")
 			return
 		}
+
 		cmd.Video(*next, *format)
+
+	case "one":
+		oneCmd := flag.NewFlagSet("one", flag.ExitOnError)
+		format := oneCmd.String("format", "", "输出格式。json或table")
+		liveId := oneCmd.String("id", "", "直播或者录播的LiveId")
+		err := oneCmd.Parse(os.Args[2:])
+
+		if err != nil {
+			fmt.Println("命令解析错误")
+			return
+		}
+
+		if *liveId == "" {
+			fmt.Println("缺少直播或者录播的LiveId")
+			return
+		}
+
+		cmd.One(*liveId, *format)
 
 		// 命令不存在
 	default:
