@@ -22,7 +22,6 @@ func main() {
 	// 解析命令
 	switch os.Args[1] {
 
-	// 直播
 	case "live":
 		liveCmd := flag.NewFlagSet("live", flag.ExitOnError)
 		format := liveCmd.String("format", "", "输出格式。json或table")
@@ -35,7 +34,6 @@ func main() {
 
 		cmd.Live(*format)
 
-		// 录播
 	case "video":
 		videoCmd := flag.NewFlagSet("video", flag.ExitOnError)
 		next := videoCmd.String("next", "", "查询下一页")
@@ -67,7 +65,6 @@ func main() {
 
 		cmd.One(*liveId, *format)
 
-		// 命令不存在
 	default:
 		fmt.Printf("命令 %s 不存在\n", os.Args[1])
 		os.Exit(1)

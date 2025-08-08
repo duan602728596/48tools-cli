@@ -61,7 +61,7 @@ func getNextValue(next string) string {
 	return nextVal
 }
 
-// getFormatVal 获取format的值
+// GetFormatVal 获取format的值
 // 参数 format: 格式化的类型
 func GetFormatVal(format string) string {
 	formatVal := "table"
