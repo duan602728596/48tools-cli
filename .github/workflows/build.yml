@@ -1,0 +1,60 @@
+# https://docs.github.com/en/actions/using-github-hosted-runners/about-larger-runners/about-larger-runners
+
+name: Build apps CI
+
+on:
+  push:
+    branches:
+      - 'build/v**'
+
+jobs:
+  build:
+    runs-on: macos-latest
+    strategy:
+      matrix:
+        node-version: [24.x]
+        go-version: [1.21]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Setup Go ${{ matrix.go-version }}
+        uses: actions/setup-go@v4
+        with:
+          go-version: ${{ matrix.go-version }}
+
+      - run: |
+          VERSION=${{ github.ref }}
+          VERSION=${VERSION#refs/heads/build/v}
+          echo "VERSION=$VERSION" >> $GITHUB_ENV
+
+      - run: npm install --production
+
+      - run: go mod download
+
+      - run: node --run build
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v2
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          name: v${{ env.VERSION }}
+          tag_name: v${{ env.VERSION }}
+          draft: true
+          prerelease: true
+          append_body: true
+          files: |
+            .build/win-amd64/48tools-cli-${{ env.VERSION }}-win-amd64.zip
+            .build/win-arm64/48tools-cli-${{ env.VERSION }}-win-arm64.zip
+            .build/linux-amd64/48tools-cli-${{ env.VERSION }}-linux-amd64.zip
+            .build/linux-arm64/48tools-cli-${{ env.VERSION }}-linux-arm64.zip
+            .build/darwin-amd64/48tools-cli-${{ env.VERSION }}-darwin-amd64.zip
+            .build/darwin-arm64/48tools-cli-${{ env.VERSION }}-darwin-arm64.zip
+
+permissions:
+  contents: write
