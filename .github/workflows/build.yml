@@ -49,8 +49,8 @@ jobs:
           prerelease: true
           append_body: true
           files: |
-            .build/win-amd64/48tools-cli-${{ env.VERSION }}-win-amd64.zip
-            .build/win-arm64/48tools-cli-${{ env.VERSION }}-win-arm64.zip
+            .build/windows-amd64/48tools-cli-${{ env.VERSION }}-windows-amd64.zip
+            .build/windows-arm64/48tools-cli-${{ env.VERSION }}-windows-arm64.zip
             .build/linux-amd64/48tools-cli-${{ env.VERSION }}-linux-amd64.zip
             .build/linux-arm64/48tools-cli-${{ env.VERSION }}-linux-arm64.zip
             .build/darwin-amd64/48tools-cli-${{ env.VERSION }}-darwin-amd64.zip

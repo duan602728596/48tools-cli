@@ -2,8 +2,12 @@ import { join } from 'node:path';
 import { cwd } from 'node:process';
 import { existsSync } from 'node:fs';
 import { mkdir, copyFile, writeFile } from 'node:fs/promises';
+import { promisify } from 'node:util';
 import { execa } from 'execa';
+import { zip } from 'cross-zip';
 import packageJson from '../package.json' with { type: 'json' };
+
+const zipAsync: (inPath: string, outPath: string) => Promise<void> = promisify(zip);
 
 const softwareName: string = '48tools';
 const osList: Array<string> = ['windows', 'linux', 'darwin'];
@@ -38,8 +42,10 @@ async function build(targetOs: string, targetArch: string): Promise<void> {
       }),
       copyFile(join(cwd(), 'README.md'), join(targetDir, 'README.md')),
       copyFile(join(cwd(), 'LICENSE'), join(targetDir, 'LICENSE')),
+      copyFile(join(cwd(), 'config.example.yaml'), join(targetDir, 'config.yaml')),
       writeFile(join(targetDir, `v${ packageJson.version }`), '', { encoding: 'utf8' })
     ]);
+    await zipAsync(targetDir, `${ packageJson.name }-${ packageJson.version }-${ targetOs }-${ targetArch }.zip`);
 
     console.log(`✅ Success: ${ outputFile }`);
   } catch (err) {
