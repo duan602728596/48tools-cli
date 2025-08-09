@@ -102,7 +102,7 @@ func getLiveListAndDownload(config cmdYamlTypes.Config) {
 	}
 
 	if !resp.Success {
-		fmt.Println(fmt.Errorf(jsonStr))
+		fmt.Println(jsonStr)
 		return
 	}
 
