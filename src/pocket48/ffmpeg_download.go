@@ -69,6 +69,7 @@ func FfmpegDownload(config cmdTypes.Config, liveId string, displayLog bool, cust
 
 	if err != nil {
 		fmt.Println(err)
+		return
 	}
 
 	// 获取文件扩展名
