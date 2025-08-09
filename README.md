@@ -1,8 +1,15 @@
 # 48tools-cli
 
 ![GitHub Release](https://img.shields.io/github/v/release/duan602728596/48tools-cli)
-![GitHub License](https://img.shields.io/github/license/duan602728596/48tools-cli)   ![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/duan602728596/48tools-cli/.github%2Fworkflows%2Fbuild.yml?style=flat&label=Build%20apps%20CI%20)   
-![Static Badge](https://img.shields.io/badge/Win10-fa541c?style=for-the-badge)   ![Static Badge](https://img.shields.io/badge/Win11-fa8c16?style=for-the-badge)   ![Static Badge](https://img.shields.io/badge/Linux-722ed1?style=for-the-badge)   ![Static Badge](https://img.shields.io/badge/MacOS-eb2f96?style=for-the-badge)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;![Static Badge](https://img.shields.io/badge/AMD64-13c2c2?style=for-the-badge)   ![Static Badge](https://img.shields.io/badge/ARM64-fadb14?style=for-the-badge)
+![GitHub License](https://img.shields.io/github/license/duan602728596/48tools-cli)
+![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/duan602728596/48tools-cli/.github%2Fworkflows%2Fbuild.yml?style=flat&label=Build%20apps%20CI%20)   
+![Static Badge](https://img.shields.io/badge/Win10-fa541c?style=for-the-badge)
+![Static Badge](https://img.shields.io/badge/Win11-fa8c16?style=for-the-badge)
+![Static Badge](https://img.shields.io/badge/Linux-722ed1?style=for-the-badge)
+![Static Badge](https://img.shields.io/badge/MacOS-eb2f96?style=for-the-badge)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+![Static Badge](https://img.shields.io/badge/AMD64-13c2c2?style=for-the-badge)
+![Static Badge](https://img.shields.io/badge/ARM64-fadb14?style=for-the-badge)
 
 48tools-cli是从命令行执行获取直播或录播的信息、具有下载和自动下载视频的功能的软件。   
 软件源代码使用go来编写，使用node.js + typescript执行脚本。   
