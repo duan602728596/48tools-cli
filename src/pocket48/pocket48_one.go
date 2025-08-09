@@ -6,6 +6,7 @@ import (
 	"os"
 
 	"github.com/duan602728596/48tools-cli/v2/src/api"
+	"github.com/duan602728596/48tools-cli/v2/src/utils"
 	"github.com/olekukonko/tablewriter"
 )
 
@@ -40,7 +41,7 @@ func One(liveId string, format string) {
 		{"LiveId", resp.Content.LiveId},
 		{"RoomId", resp.Content.RoomId},
 		{"Title", resp.Content.Title},
-		{"Time", Time(resp.Content.Ctime)},
+		{"Time", utils.Time(resp.Content.Ctime)},
 		{"UserId", resp.Content.User.UserId},
 		{"Username", resp.Content.User.UserName},
 		{"PlayStreamPath", resp.Content.PlayStreamPath},

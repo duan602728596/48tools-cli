@@ -3,13 +3,13 @@ package api
 import (
 	"encoding/json"
 
-	apitypes "github.com/duan602728596/48tools-cli/v2/src/api/types"
+	apiTypes "github.com/duan602728596/48tools-cli/v2/src/api/types"
 )
 
 // RequestLiveOne 加载单个直播的信息
 // 参数 liveId: 直播id
-func RequestLiveOne(liveId string) (apitypes.LiveOneResponse, string, error) {
-	var result apitypes.LiveOneResponse
+func RequestLiveOne(liveId string) (apiTypes.LiveOneResponse, string, error) {
+	var result apiTypes.LiveOneResponse
 
 	body := map[string]interface{}{
 		"liveId": liveId,

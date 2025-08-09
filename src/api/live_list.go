@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"errors"
 
-	apitypes "github.com/duan602728596/48tools-cli/v2/src/api/types"
+	apiTypes "github.com/duan602728596/48tools-cli/v2/src/api/types"
 )
 
 // setBody 设置请求的body
@@ -56,8 +56,8 @@ func setBody(body *map[string]interface{}, inLive bool, next string, groupId str
 // 参数 next: 请求下一页
 // 参数 groupId: 请求的组的Id
 // 参数 userId: 请求的用户的ID
-func RequestLiveList(inLive bool, next string, groupId string, userId string) (apitypes.LiveListResponse, string, error) {
-	var result apitypes.LiveListResponse
+func RequestLiveList(inLive bool, next string, groupId string, userId string) (apiTypes.LiveListResponse, string, error) {
+	var result apiTypes.LiveListResponse
 
 	body := map[string]interface{}{
 		"debug": true,

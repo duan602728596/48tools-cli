@@ -13,10 +13,17 @@ import (
 
 // LiveType 解析直播类型
 // 参数 t: LiveType的值
-func LiveType(t int) string {
+// 参数 m: liveMode的值
+func LiveType(t int, m int) string {
+	if m == 1 {
+		return "录屏"
+	}
+
 	switch t {
 	case 5:
 		return "游戏"
+	case 6:
+		return "AI"
 	case 2:
 		return "电台"
 	default:
@@ -96,7 +103,7 @@ func Live(inLive bool, next string, format string) {
 	for _, item := range resp.Content.LiveList {
 		err := table.Append([]string{
 			item.LiveId,
-			LiveType(item.LiveType),
+			LiveType(item.LiveType, item.LiveMode),
 			item.Title,
 			item.UserInfo.Nickname,
 			utils.Time(item.Ctime),

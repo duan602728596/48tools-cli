@@ -4,12 +4,17 @@ Package cmd_types yaml配置文件的类型
 package cmd_types
 
 type Pocket48LiveConfig struct {
-	AutoRecord bool     `yaml:"autoRecord"`
-	RecordName []string `yaml:"recordName"`
+	RecordName  []string `yaml:"recordName"`
+	DownloadDir string   `yaml:"downloadDir"`
+}
+
+type Pocket48DownloadConfig struct {
+	DownloadDir string `yaml:"downloadDir"`
 }
 
 type Pocket48Config struct {
-	Live Pocket48LiveConfig `yaml:"live"`
+	Live     Pocket48LiveConfig     `yaml:"live"`
+	Download Pocket48DownloadConfig `yaml:"download"`
 }
 
 type Config struct {

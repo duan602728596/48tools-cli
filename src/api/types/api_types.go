@@ -14,7 +14,7 @@ type LiveListContentInfo struct {
 	Ctime                  string           `json:"ctime"`
 	LiveId                 string           `json:"liveId"`
 	RoomId                 string           `json:"roomId"`
-	LiveType               int              `json:"liveType"` // 1：直播，2：电台，5：游戏
+	LiveType               int              `json:"liveType"` // 1：直播，2：电台，5：游戏，6：AI
 	LiveMode               int              `json:"liveMode"` // 0：正常，1：录屏
 	Title                  string           `json:"title"`
 	InMicrophoneConnection bool             `json:"inMicrophoneConnection"`
@@ -50,6 +50,9 @@ type LiveOneContent struct {
 	PlayStreamPath string      `json:"playStreamPath"`
 	Ctime          string      `json:"ctime"`
 	User           LiveOneUser `json:"user"`
+	Type           int         `json:"type"`     // 1可能是录播
+	LiveType       int         `json:"liveType"` // 1：直播，2：电台，5：游戏，6：AI
+	LiveMode       int         `json:"liveMode"` // 0：正常，1：录屏
 }
 
 type LiveOneResponse struct {
