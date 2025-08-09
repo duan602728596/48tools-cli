@@ -1,7 +1,7 @@
 /*
-Package yaml_types yaml配置文件的类型
+Package cmd_yaml_types yaml配置文件的类型
 */
-package yaml_types
+package cmd_yaml_types
 
 type Pocket48LiveConfig struct {
 	RecordName  []string `yaml:"recordName"`

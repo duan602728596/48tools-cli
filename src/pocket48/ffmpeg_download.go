@@ -10,7 +10,7 @@ import (
 	"strings"
 
 	"github.com/duan602728596/48tools-cli/v2/src/api"
-	yamlTypes "github.com/duan602728596/48tools-cli/v2/src/cmd/types"
+	cmdYamlTypes "github.com/duan602728596/48tools-cli/v2/src/cmd/types"
 	"github.com/duan602728596/48tools-cli/v2/src/utils"
 )
 
@@ -75,7 +75,7 @@ func getAvailableFilename(filePath string) string {
 // 参数 isAutoRecord: 是自动录制的
 // 参数 displayLog: 是否在控制台打印消息
 // 参数 customName: 自定义文件名
-func FfmpegDownload(config yamlTypes.Config, liveId string, isAutoRecord bool, displayLog bool, customName string) {
+func FfmpegDownload(config cmdYamlTypes.Config, liveId string, isAutoRecord bool, displayLog bool, customName string) {
 	resp, _, err := api.RequestLiveOne(liveId)
 
 	if err != nil {

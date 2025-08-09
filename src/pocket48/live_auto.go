@@ -11,7 +11,7 @@ import (
 
 	"github.com/duan602728596/48tools-cli/v2/src/api"
 	apiTypes "github.com/duan602728596/48tools-cli/v2/src/api/types"
-	yamlTypes "github.com/duan602728596/48tools-cli/v2/src/cmd/types"
+	cmdYamlTypes "github.com/duan602728596/48tools-cli/v2/src/cmd/types"
 	cmdYaml "github.com/duan602728596/48tools-cli/v2/src/cmd/yaml"
 )
 
@@ -65,7 +65,7 @@ func removeByLiveId(liveId string) {
 // 下载单个
 // 参数 config: 配置文件的配置项
 // 参数 l: 正在直播的列表的item
-func getLiveListAndDownloadOne(config yamlTypes.Config, l apiTypes.LiveListContentInfo) {
+func getLiveListAndDownloadOne(config cmdYamlTypes.Config, l apiTypes.LiveListContentInfo) {
 	RecordingLiveListMu.Lock()
 	RecordingLiveList = append(RecordingLiveList, InLiveItem{LiveListContentInfo: l})
 	RecordingLiveListMu.Unlock()
@@ -93,7 +93,7 @@ func getLiveListAndDownloadOne(config yamlTypes.Config, l apiTypes.LiveListConte
 
 // getLiveListAndDownload 获取直播列表并下载
 // 参数 config: 配置文件的配置项
-func getLiveListAndDownload(config yamlTypes.Config) {
+func getLiveListAndDownload(config cmdYamlTypes.Config) {
 	resp, jsonStr, err := api.RequestLiveList(true, "0", "", "")
 
 	if err != nil {
@@ -125,7 +125,7 @@ func getLiveListAndDownload(config yamlTypes.Config) {
 
 // LiveAuto 定时自动下载直播
 // 参数 config: 配置文件的配置项
-func LiveAuto(config yamlTypes.Config) {
+func LiveAuto(config cmdYamlTypes.Config) {
 	ticker := time.NewTicker(60 * time.Second)
 	defer ticker.Stop()
 	RecordingLiveList = []InLiveItem{}
