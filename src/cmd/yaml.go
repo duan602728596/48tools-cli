@@ -5,8 +5,8 @@ import (
 	"os"
 	"path/filepath"
 
-	cmd_types "github.com/duan602728596/48tools-cli/v2/cmd/types"
-	"github.com/duan602728596/48tools-cli/v2/utils"
+	"github.com/duan602728596/48tools-cli/v2/src/cmd/types"
+	"github.com/duan602728596/48tools-cli/v2/src/utils"
 	"gopkg.in/yaml.v3"
 )
 

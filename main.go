@@ -10,7 +10,7 @@ import (
 	"os"
 	"strings"
 
-	"github.com/duan602728596/48tools-cli/v2/cmd"
+	cmd2 "github.com/duan602728596/48tools-cli/v2/src/cmd"
 )
 
 // main 初始化调用命令行
@@ -38,7 +38,7 @@ func main() {
 			return
 		}
 
-		cmd.Live(*format)
+		cmd2.Live(*format)
 
 	case "video":
 		videoCmd := flag.NewFlagSet("video", flag.ExitOnError)
@@ -51,7 +51,7 @@ func main() {
 			return
 		}
 
-		cmd.Video(*next, *format)
+		cmd2.Video(*next, *format)
 
 	case "one":
 		oneCmd := flag.NewFlagSet("one", flag.ExitOnError)
@@ -67,7 +67,7 @@ func main() {
 				return
 			}
 
-			config, err := cmd.LoadYamlConfig("")
+			config, err := cmd2.LoadYamlConfig("")
 
 			if err != nil {
 				fmt.Println(err)
@@ -90,7 +90,7 @@ func main() {
 			return
 		}
 
-		cmd.One(*liveId, *format)
+		cmd2.One(*liveId, *format)
 
 	default:
 		fmt.Printf("命令 %s 不存在\n", os.Args[1])

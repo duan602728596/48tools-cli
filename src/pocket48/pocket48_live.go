@@ -6,8 +6,8 @@ import (
 	"os"
 	"strings"
 
-	"github.com/duan602728596/48tools-cli/v2/api"
-	"github.com/duan602728596/48tools-cli/v2/utils"
+	"github.com/duan602728596/48tools-cli/v2/src/api"
+	"github.com/duan602728596/48tools-cli/v2/src/utils"
 	"github.com/olekukonko/tablewriter"
 )
 

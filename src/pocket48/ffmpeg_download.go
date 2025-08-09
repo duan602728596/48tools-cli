@@ -1,7 +1,7 @@
 package pocket48
 
 import (
-	cmdtypes "github.com/duan602728596/48tools-cli/v2/cmd/types"
+	cmdtypes "github.com/duan602728596/48tools-cli/v2/src/cmd/types"
 )
 
 // FfmpegDownload 下载视频

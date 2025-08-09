@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/duan602728596/48tools-cli/v2/api"
+	"github.com/duan602728596/48tools-cli/v2/src/api"
 	"github.com/olekukonko/tablewriter"
 )
 
