@@ -7,11 +7,12 @@
 ![Static Badge](https://img.shields.io/badge/Win11-fa8c16?style=for-the-badge)
 ![Static Badge](https://img.shields.io/badge/Linux-722ed1?style=for-the-badge)
 ![Static Badge](https://img.shields.io/badge/MacOS-eb2f96?style=for-the-badge)
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 ![Static Badge](https://img.shields.io/badge/AMD64-13c2c2?style=for-the-badge)
 ![Static Badge](https://img.shields.io/badge/ARM64-fadb14?style=for-the-badge)
 
 48tools-cli是从命令行执行获取直播或录播的信息、具有下载和自动下载视频的功能的软件。   
+软件轻量级，无GUI，占用内存小，适合在服务器上使用。   
+如果想要使用更多、更强大的功能，请选择[48tools](https://github.com/duan602728596/48tools)。   
 软件源代码使用go来编写，使用node.js + typescript执行脚本。   
 
 ## 命令
