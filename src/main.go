@@ -83,6 +83,11 @@ func main() {
 				os.Exit(1)
 			}
 
+			if *liveId == "" {
+				fmt.Println("缺少直播或者录播的LiveId")
+				os.Exit(1)
+			}
+
 			cmd.OneDownload(config, *liveId, *customName)
 
 			return
