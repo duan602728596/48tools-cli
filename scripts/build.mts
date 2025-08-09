@@ -1,8 +1,9 @@
 import { join } from 'node:path';
 import { cwd } from 'node:process';
 import { existsSync } from 'node:fs';
-import { mkdir } from 'node:fs/promises';
+import { mkdir, copyFile, writeFile } from 'node:fs/promises';
 import { execa } from 'execa';
+import packageJson from '../package.json' with { type: 'json' };
 
 const softwareName: string = '48tools';
 const osList: Array<string> = ['windows', 'linux', 'darwin'];
@@ -27,12 +28,18 @@ async function build(targetOs: string, targetArch: string): Promise<void> {
   console.log(`🚧 Building for ${ targetOs }/${ targetArch }...`);
 
   try {
-    await execa('go', ['build', '-o', outputFile, 'src/main.go'], {
-      env: {
-        GOOS: targetOs,
-        GOARCH: targetArch
-      }
-    });
+    // 拷贝其他文件
+    await Promise.all([
+      execa('go', ['build', '-o', outputFile, 'src/main.go'], {
+        env: {
+          GOOS: targetOs,
+          GOARCH: targetArch
+        }
+      }),
+      copyFile(join(cwd(), 'README.md'), join(targetDir, 'README.md')),
+      copyFile(join(cwd(), 'LICENSE'), join(targetDir, 'LICENSE')),
+      writeFile(join(targetDir, `v${ packageJson.version }`), '', { encoding: 'utf8' })
+    ]);
 
     console.log(`✅ Success: ${ outputFile }`);
   } catch (err) {
