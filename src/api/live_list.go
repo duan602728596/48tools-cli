@@ -3,40 +3,9 @@ package api
 import (
 	"encoding/json"
 	"errors"
+
+	apitypes "github.com/duan602728596/48tools-cli/v2/src/api/types"
 )
-
-type LiveListUserInfo struct {
-	Avatar   string `json:"avatar"`
-	Nickname string `json:"nickname"`
-	TeamLogo string `json:"teamLogo"`
-	UserId   string `json:"userId"`
-}
-
-type LiveListContentInfo struct {
-	CoverPath              string           `json:"coverPath"`
-	Ctime                  string           `json:"ctime"`
-	LiveId                 string           `json:"liveId"`
-	RoomId                 string           `json:"roomId"`
-	LiveType               int              `json:"liveType"` // 1：直播，2：电台，5：游戏
-	LiveMode               int              `json:"liveMode"` // 0：正常，1：录屏
-	Title                  string           `json:"title"`
-	InMicrophoneConnection bool             `json:"inMicrophoneConnection"`
-	Status                 int              `json:"status"`
-	UserInfo               LiveListUserInfo `json:"userInfo"`
-}
-
-type LiveListContent struct {
-	Next           string                `json:"next"`
-	SlideUpAndDown bool                  `json:"slideUpAndDown"`
-	LiveList       []LiveListContentInfo `json:"liveList"`
-}
-
-type LiveListResponse struct {
-	Message string          `json:"message"`
-	Status  int             `json:"status"`
-	Success bool            `json:"success"`
-	Content LiveListContent `json:"content"`
-}
 
 // setBody 设置请求的body
 // 参数 body: 原始请求的body
@@ -87,8 +56,8 @@ func setBody(body *map[string]interface{}, inLive bool, next string, groupId str
 // 参数 next: 请求下一页
 // 参数 groupId: 请求的组的Id
 // 参数 userId: 请求的用户的ID
-func RequestLiveList(inLive bool, next string, groupId string, userId string) (LiveListResponse, string, error) {
-	var result LiveListResponse
+func RequestLiveList(inLive bool, next string, groupId string, userId string) (apitypes.LiveListResponse, string, error) {
+	var result apitypes.LiveListResponse
 
 	body := map[string]interface{}{
 		"debug": true,
