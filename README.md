@@ -15,6 +15,20 @@
 如果想要使用更多、更强大的功能，请选择[48tools](https://github.com/duan602728596/48tools)。   
 软件源代码使用go来编写，使用node.js + typescript执行脚本。   
 
+## 配置
+
+在软件开始使用前，必须先在`config.yaml`中进行配置。
+
+### 参数
+
+* ffmpeg：ffmpeg的路径，下载视频必备。下载地址为：[https://ffmpeg.org/download.html](https://ffmpeg.org/download.html)。
+* pocket48：配置口袋48执行的一些配置
+  * live：直播相关配置
+    * recordName：录制的小偶像的名字或者id，必须是**字符串**。名字是包含关系，id是完全匹配。类型是**数组**。
+    * downloadDir：下载视频的目录。
+  * download：录播相关配置
+    * downloadDir：下载视频的目录。
+
 ## 命令
 
 ### 查看当前的直播
@@ -25,6 +39,12 @@
 
 * 支持的参数：
   * --format：table或者json。格式化输出的信息。
+
+### 自动录制直播
+
+```bash
+48tools live auto
+```
 
 ### 查看当前的录播
 
