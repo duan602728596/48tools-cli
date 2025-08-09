@@ -26,7 +26,7 @@ async function build(targetOs: string, targetArch: string): Promise<void> {
   console.log(`🚧 Building for ${ targetOs }/${ targetArch }...`);
 
   try {
-    await execa('go', ['build', '-o', outputFile, 'main.go'], {
+    await execa('go', ['build', '-o', outputFile, 'src/main.go'], {
       env: {
         GOOS: targetOs,
         GOARCH: targetArch
