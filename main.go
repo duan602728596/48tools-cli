@@ -8,6 +8,7 @@ import (
 	"flag"
 	"fmt"
 	"os"
+	"strings"
 
 	"github.com/duan602728596/48tools-cli/v2/cmd"
 )
@@ -20,7 +21,12 @@ func main() {
 	}
 
 	// 解析命令
-	switch os.Args[1] {
+	cmdStr := strings.ToLower(os.Args[1])
+	var secondaryCmdStr string
+	if len(os.Args) > 2 {
+		secondaryCmdStr = strings.ToLower(os.Args[2])
+	}
+	switch cmdStr {
 
 	case "live":
 		liveCmd := flag.NewFlagSet("live", flag.ExitOnError)
@@ -51,6 +57,27 @@ func main() {
 		oneCmd := flag.NewFlagSet("one", flag.ExitOnError)
 		format := oneCmd.String("format", "", "输出格式。json或table")
 		liveId := oneCmd.String("id", "", "直播或者录播的LiveId")
+
+		// 解析下载功能
+		if secondaryCmdStr == "download" {
+			err := oneCmd.Parse(os.Args[3:])
+
+			if err != nil {
+				fmt.Println("命令解析错误")
+				return
+			}
+
+			config, err := cmd.LoadYamlConfig("")
+
+			if err != nil {
+				fmt.Println(err)
+				return
+			}
+
+			return
+		}
+
+		// 解析显示数据
 		err := oneCmd.Parse(os.Args[2:])
 
 		if err != nil {

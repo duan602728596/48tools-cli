@@ -5,27 +5,15 @@ import (
 	"os"
 	"path/filepath"
 
+	cmd_types "github.com/duan602728596/48tools-cli/v2/cmd/types"
+	"github.com/duan602728596/48tools-cli/v2/utils"
 	"gopkg.in/yaml.v3"
 )
 
-type Pocket48LiveConfig struct {
-	AutoRecord bool     `yaml:"autoRecord"`
-	RecordName []string `yaml:"recordName"`
-}
-
-type Pocket48Config struct {
-	Live Pocket48LiveConfig `yaml:"live"`
-}
-
-type Config struct {
-	Ffmpeg   string         `yaml:"ffmpeg"`
-	Pocket48 Pocket48Config `yaml:"pocket48"`
-}
-
 // LoadYamlConfig 读取yaml配置文件
 // 参数 name: 读取的文件名
-func LoadYamlConfig(name string) (Config, error) {
-	var config Config
+func LoadYamlConfig(name string) (cmd_types.Config, error) {
+	var config cmd_types.Config
 
 	configName := "config.yaml"
 
@@ -34,7 +22,7 @@ func LoadYamlConfig(name string) (Config, error) {
 	}
 
 	// 检查文件是否存在
-	wd, err := os.Getwd()
+	wd, err := utils.GetAppDir()
 
 	if err != nil {
 		return config, fmt.Errorf("无法获取当前执行路径: %w", err)

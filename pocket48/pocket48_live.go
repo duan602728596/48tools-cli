@@ -4,27 +4,12 @@ import (
 	"errors"
 	"fmt"
 	"os"
-	"strconv"
 	"strings"
-	"time"
 
 	"github.com/duan602728596/48tools-cli/v2/api"
+	"github.com/duan602728596/48tools-cli/v2/utils"
 	"github.com/olekukonko/tablewriter"
 )
-
-// Time 将时间戳字符串转换成格式化后的时间
-// 参数 timestampStr: 时间戳字符串
-func Time(timestampStr string) string {
-	// 转换成 int64
-	timestampMs, err := strconv.ParseInt(timestampStr, 10, 64)
-	if err != nil {
-		fmt.Println(err)
-		return ""
-	}
-	t := time.UnixMilli(timestampMs)
-	formatted := t.Format("2006-01-02 15:04:05")
-	return formatted
-}
 
 // LiveType 解析直播类型
 // 参数 t: LiveType的值
@@ -114,7 +99,7 @@ func Live(inLive bool, next string, format string) {
 			LiveType(item.LiveType),
 			item.Title,
 			item.UserInfo.Nickname,
-			Time(item.Ctime),
+			utils.Time(item.Ctime),
 		})
 		if err != nil {
 			fmt.Println(err)

@@ -5,7 +5,11 @@ ffmpeg: ffmpeg
 pocket48:
   # 直播
   live:
-    # 开启自动录制
-    autoRecord: false
     # 自动录制的成员名字或ID
     recordName: []
+    # 下载视频的目录
+    downloadDir: '.download_dir/live'
+  # 录播
+  download:
+    # 下载视频的目录
+    downloadDir: '.download_dir/download'

@@ -26,3 +26,4 @@ config.yaml
 dist
 build
 .build
+.download_dir
