@@ -1,5 +1,6 @@
 {
   "name": "48tools-cli",
+  "version": "0.0.1",
   "description": "48tools的cli工具",
   "scripts": {
     "eslint": "cross-env COMMITLINT=1 eslint ./ --fix --cache --cache-location .eslintcache --no-warn-ignored",
