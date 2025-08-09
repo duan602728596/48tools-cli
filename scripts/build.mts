@@ -20,6 +20,7 @@ async function build(targetOs: string, targetArch: string): Promise<void> {
 
   if (!existsSync(targetDir)) await mkdir(targetDir, { recursive: true });
 
+  // 编译文件
   const isWindows: boolean = targetOs === 'windows';
   const outputFile: string = join(targetDir, isWindows ? `${ softwareName }.exe` : softwareName);
 
