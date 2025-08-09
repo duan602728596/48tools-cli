@@ -5,8 +5,13 @@ ffmpeg: ffmpeg
 pocket48:
   # 直播
   live:
-    # 自动录制的成员名字或ID
-    recordName: []
+    # 自动录制的成员名字或ID，必须是字符串
+    recordName: [
+      '马欣宇',
+      '郑照暄',
+      '95552277',
+      '95552291'
+    ]
     # 下载视频的目录
     downloadDir: '.download_dir/live'
   # 录播

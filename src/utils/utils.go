@@ -69,8 +69,8 @@ func Time(timestampStr string) string {
 	return timeCore(timestampStr, "2006-01-02 15:04:05")
 }
 
-// Time2 将时间戳字符串转换成格式化后的时间
+// Time2 将时间戳字符串转换成格式化后的时间，安全支持路径
 // 参数 timestampStr: 时间戳字符串
 func Time2(timestampStr string) string {
-	return timeCore(timestampStr, "2006~01~02~15~04~05")
+	return timeCore(timestampStr, "20060102150405")
 }

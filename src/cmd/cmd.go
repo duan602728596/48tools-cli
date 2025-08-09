@@ -11,6 +11,12 @@ func Live(format string) {
 	pocket48.Live(true, "0", format)
 }
 
+// LiveAutoDownload 自动下载直播
+// 参数 config: 配置文件的配置项
+func LiveAutoDownload(config cmdTypes.Config) {
+	pocket48.LiveAuto(config)
+}
+
 // Video 根据命令执行操作
 // 参数 next: 请求下一页时用
 // 参数 format: 格式化的类型
@@ -33,7 +39,7 @@ func OneDownload(config cmdTypes.Config, liveId string, customName string) {
 	done := make(chan bool, 1)
 
 	go func() {
-		pocket48.FfmpegDownload(config, liveId, true, customName)
+		pocket48.FfmpegDownload(config, liveId, false, true, customName)
 		done <- true
 	}()
 

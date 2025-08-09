@@ -36,15 +36,21 @@ func One(liveId string, format string) {
 	}
 
 	// 输出表格
+	var liveTypeCn string
+	if resp.Content.RoomId == "0" {
+		liveTypeCn = "录播"
+	} else {
+		liveTypeCn = "直播"
+	}
 	table := tablewriter.NewWriter(os.Stdout)
 	appendData := [][]string{
-		{"LiveId", resp.Content.LiveId},
+		{liveTypeCn + "Id", resp.Content.LiveId},
 		{"RoomId", resp.Content.RoomId},
-		{"Title", resp.Content.Title},
-		{"Time", utils.Time(resp.Content.Ctime)},
-		{"UserId", resp.Content.User.UserId},
-		{"Username", resp.Content.User.UserName},
-		{"PlayStreamPath", resp.Content.PlayStreamPath},
+		{"标题", resp.Content.Title},
+		{"时间", utils.Time(resp.Content.Ctime)},
+		{"成员", resp.Content.User.UserName},
+		{"成员Id", resp.Content.User.UserId},
+		{"地址", resp.Content.PlayStreamPath},
 	}
 
 	for _, item := range appendData {

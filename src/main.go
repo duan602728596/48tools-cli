@@ -11,6 +11,7 @@ import (
 	"strings"
 
 	"github.com/duan602728596/48tools-cli/v2/src/cmd"
+	cmdYaml "github.com/duan602728596/48tools-cli/v2/src/cmd/yaml"
 	"github.com/duan602728596/48tools-cli/v2/src/utils"
 )
 
@@ -39,6 +40,28 @@ func main() {
 	case "live":
 		liveCmd := flag.NewFlagSet("live", flag.ExitOnError)
 		format := liveCmd.String("format", "", "输出格式。json或table")
+
+		// 自动下载直播
+		if secondaryCmdStr == "auto" {
+			err := liveCmd.Parse(os.Args[3:])
+
+			if err != nil {
+				fmt.Println("命令解析错误")
+				os.Exit(1)
+			}
+
+			config, err := cmdYaml.LoadYamlConfig("")
+
+			if err != nil {
+				fmt.Println(err)
+				os.Exit(1)
+			}
+
+			cmd.LiveAutoDownload(config)
+
+			return
+		}
+
 		err := liveCmd.Parse(os.Args[2:])
 
 		if err != nil {
@@ -76,7 +99,7 @@ func main() {
 				os.Exit(1)
 			}
 
-			config, err := cmd.LoadYamlConfig("")
+			config, err := cmdYaml.LoadYamlConfig("")
 
 			if err != nil {
 				fmt.Println(err)

@@ -106,6 +106,7 @@ func Live(inLive bool, next string, format string) {
 			LiveType(item.LiveType, item.LiveMode),
 			item.Title,
 			item.UserInfo.Nickname,
+			item.UserInfo.UserId,
 			utils.Time(item.Ctime),
 		})
 		if err != nil {
@@ -113,7 +114,7 @@ func Live(inLive bool, next string, format string) {
 		}
 	}
 
-	table.Header([]string{liveTypeCn + "ID", liveTypeCn + "类型", liveTypeCn + "标题", "成员", "时间"})
+	table.Header([]string{liveTypeCn + "ID", liveTypeCn + "类型", liveTypeCn + "标题", "成员", "成员ID", "时间"})
 	err = table.Render()
 
 	if err != nil {

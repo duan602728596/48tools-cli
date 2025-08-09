@@ -41,12 +41,41 @@ func ensureDir(dir string) error {
 	return err
 }
 
+// fileExists 判断文件是否存在
+// 参数 path: 文件路径
+func fileExists(path string) bool {
+	_, err := os.Stat(path)
+	return err == nil
+}
+
+// getAvailableFilename 判断文件是否存在，存在则文件名+1
+// 参数 filePath: 文件路径
+func getAvailableFilename(filePath string) string {
+	if !fileExists(filePath) {
+		return filePath
+	}
+
+	ext := filepath.Ext(filePath)                            // 文件扩展名，如 .txt
+	base := strings.TrimSuffix(filepath.Base(filePath), ext) // 文件名不带扩展名
+	dir := filepath.Dir(filePath)                            // 目录
+
+	// 从 1 开始尝试新文件名，直到不存在
+	for i := 1; ; i++ {
+		newName := fmt.Sprintf("%s_%d%s", base, i, ext)
+		newPath := filepath.Join(dir, newName)
+		if !fileExists(newPath) {
+			return newPath
+		}
+	}
+}
+
 // FfmpegDownload 下载视频
 // 参数 config: 配置文件的配置项
 // 参数 liveId: 直播或者录播的id
+// 参数 isAutoRecord: 是自动录制的
 // 参数 displayLog: 是否在控制台打印消息
 // 参数 customName: 自定义文件名
-func FfmpegDownload(config cmdTypes.Config, liveId string, displayLog bool, customName string) {
+func FfmpegDownload(config cmdTypes.Config, liveId string, isAutoRecord bool, displayLog bool, customName string) {
 	resp, _, err := api.RequestLiveOne(liveId)
 
 	if err != nil {
@@ -54,16 +83,18 @@ func FfmpegDownload(config cmdTypes.Config, liveId string, displayLog bool, cust
 		return
 	}
 
-	fmt.Printf(
-		"LiveId: %s\nRoomId: %s\nTitle: %s\nTime: %s\nUserId: %s\nUsername: %s\nPlayStreamPath: %s\n\n正在下载......\n\n",
-		resp.Content.LiveId,
-		resp.Content.RoomId,
-		resp.Content.Title,
-		utils.Time(resp.Content.Ctime),
-		resp.Content.User.UserId,
-		resp.Content.User.UserName,
-		resp.Content.PlayStreamPath,
-	)
+	if displayLog {
+		fmt.Printf(
+			"LiveId: %s\nRoomId: %s\nTitle: %s\nTime: %s\nUserId: %s\nUsername: %s\nPlayStreamPath: %s\n正在下载......\n",
+			resp.Content.LiveId,
+			resp.Content.RoomId,
+			resp.Content.Title,
+			utils.Time(resp.Content.Ctime),
+			resp.Content.User.UserId,
+			resp.Content.User.UserName,
+			resp.Content.PlayStreamPath,
+		)
+	}
 
 	urlParseResult, err := url.Parse(resp.Content.PlayStreamPath)
 
@@ -87,19 +118,20 @@ func FfmpegDownload(config cmdTypes.Config, liveId string, displayLog bool, cust
 		}
 	}
 
-	// 判断是直播还是录播
+	// 输出的目录
 	var baseDir string
-
-	if resp.Content.Type == 1 {
+	if resp.Content.RoomId == "0" {
 		baseDir = config.Pocket48.Download.DownloadDir
 	} else {
 		baseDir = config.Pocket48.Live.DownloadDir
+
+		if isAutoRecord {
+			baseDir = joinPath(baseDir, "auto")
+		}
 	}
 
 	appDir := utils.GetAppDir()
-
 	downloadDir := joinPath(appDir, filepath.Join(baseDir, resp.Content.User.UserName+"_"+resp.Content.User.UserId))
-
 	err = ensureDir(downloadDir)
 
 	if err != nil {
@@ -114,29 +146,28 @@ func FfmpegDownload(config cmdTypes.Config, liveId string, displayLog bool, cust
 		fileName = LiveType(resp.Content.LiveType, resp.Content.LiveMode) +
 			"_" +
 			resp.Content.Title +
-			"_" +
+			"_LiveId@" +
 			resp.Content.LiveId +
-			"_" +
-			resp.Content.LiveId +
-			"_" +
+			"_RoomId@" +
 			resp.Content.RoomId +
 			"_" +
-			utils.Time2(resp.Content.Ctime) +
 			resp.Content.User.UserName +
-			"_" +
+			"@" +
 			resp.Content.User.UserId +
+			"_" +
+			utils.Time2(resp.Content.Ctime) +
 			ext
 	} else {
 		fileName = customName
 	}
 
-	downloadFile := filepath.Join(downloadDir, fileName)
+	downloadFile := getAvailableFilename(filepath.Join(downloadDir, fileName))
 
 	// 执行命令
 	cmd := exec.Command(
 		config.Ffmpeg,
 		"-protocol_whitelist",
-		"file,http,https,tcp,tls",
+		"file,http,https,tcp,tls,rtmp",
 		"-i",
 		resp.Content.PlayStreamPath,
 		"-c",
