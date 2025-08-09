@@ -1,7 +1,7 @@
 package cmd
 
 import (
-	cmdTypes "github.com/duan602728596/48tools-cli/v2/src/cmd/types"
+	yamlTypes "github.com/duan602728596/48tools-cli/v2/src/cmd/types"
 	"github.com/duan602728596/48tools-cli/v2/src/pocket48"
 )
 
@@ -13,7 +13,7 @@ func Live(format string) {
 
 // LiveAutoDownload 自动下载直播
 // 参数 config: 配置文件的配置项
-func LiveAutoDownload(config cmdTypes.Config) {
+func LiveAutoDownload(config yamlTypes.Config) {
 	pocket48.LiveAuto(config)
 }
 
@@ -35,7 +35,7 @@ func One(liveId string, format string) {
 // 参数 config: 配置文件的配置项
 // 参数 liveId: 直播或者录播的id
 // 参数 customName: 自定义文件名
-func OneDownload(config cmdTypes.Config, liveId string, customName string) {
+func OneDownload(config yamlTypes.Config, liveId string, customName string) {
 	done := make(chan bool, 1)
 
 	go func() {

@@ -5,15 +5,15 @@ import (
 	"os"
 	"path/filepath"
 
-	cmdtypes "github.com/duan602728596/48tools-cli/v2/src/cmd/types"
+	yamlTypes "github.com/duan602728596/48tools-cli/v2/src/cmd/types"
 	"github.com/duan602728596/48tools-cli/v2/src/utils"
 	"gopkg.in/yaml.v3"
 )
 
 // LoadYamlConfig 读取yaml配置文件
 // 参数 name: 读取的文件名
-func LoadYamlConfig(name string) (cmdtypes.Config, error) {
-	var config cmdtypes.Config
+func LoadYamlConfig(name string) (yamlTypes.Config, error) {
+	var config yamlTypes.Config
 
 	configName := "config.yaml"
 

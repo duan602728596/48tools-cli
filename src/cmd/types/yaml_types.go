@@ -1,20 +1,20 @@
 /*
-Package cmd_types yaml配置文件的类型
+Package yaml_types yaml配置文件的类型
 */
-package cmd_types
+package yaml_types
 
 type Pocket48LiveConfig struct {
 	RecordName  []string `yaml:"recordName"`
 	DownloadDir string   `yaml:"downloadDir"`
 }
 
-type Pocket48DownloadConfig struct {
+type Pocket48VideoConfig struct {
 	DownloadDir string `yaml:"downloadDir"`
 }
 
 type Pocket48Config struct {
-	Live     Pocket48LiveConfig     `yaml:"live"`
-	Download Pocket48DownloadConfig `yaml:"download"`
+	Live  Pocket48LiveConfig  `yaml:"live"`
+	Video Pocket48VideoConfig `yaml:"video"`
 }
 
 type Config struct {

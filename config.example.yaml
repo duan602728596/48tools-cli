@@ -15,6 +15,6 @@ pocket48:
     # 下载视频的目录
     downloadDir: '.download_dir/live'
   # 录播
-  download:
+  video:
     # 下载视频的目录
-    downloadDir: '.download_dir/download'
+    downloadDir: '.download_dir/video'

@@ -26,7 +26,7 @@
   * live：直播相关配置
     * recordName：录制的小偶像的名字或者id，必须是**字符串**。名字是包含关系，id是完全匹配。类型是**数组**。
     * downloadDir：下载视频的目录。
-  * download：录播相关配置
+  * video：录播相关配置
     * downloadDir：下载视频的目录。
 
 ## 命令
