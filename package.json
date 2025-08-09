@@ -9,7 +9,7 @@
     "dev": "go run src/main.go",
     "build": "rimraf ./.build && node scripts/build.mts",
     "test": "go test ./src/...",
-    "prepare": "husky"
+    "prepare": "if [ \"$SKIP_HUSKY\" != \"true\" ]; then husky; fi"
   },
   "dependencies": {
     "cross-zip": "^4.0.1",
